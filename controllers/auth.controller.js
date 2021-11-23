@@ -1,5 +1,10 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+const jwtOptions = {
+  algorithm: "HS256",
+};
 
 //signup controller
 exports.signup = async (req, res) => {
@@ -28,6 +33,45 @@ exports.signup = async (req, res) => {
         username: result.username,
       },
       message: "Signup Successfull",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+//login controller
+exports.login = async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const foundUser = await User.findOne({ username }).exec();
+
+    if (!foundUser) {
+      return res.status(401).json({
+        message: "Incorect email or password",
+      });
+    }
+    const matched = await bcrypt.compare(password, foundUser.password);
+
+    if (!matched) {
+      return res.status(401).json({
+        message: "Incorect email or password",
+      });
+    }
+
+    const payload = { userId: foundUser._id };
+    const accessToken = jwt.sign(payload, process.env.JWT_SECRET, jwtOptions);
+
+    res.status(200).json({
+      userInfo: {
+        userId: foundUser._id,
+        username: foundUser.username,
+      },
+      token: accessToken,
+      message: "Login successfull",
     });
   } catch (err) {
     console.log(err);
