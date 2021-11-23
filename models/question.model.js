@@ -31,6 +31,15 @@ const questionSchema = new mongoose.Schema(
       ],
       default: [],
     },
+    answers: {
+      type: [
+        {
+          type: ObjectId,
+          ref: "Answer",
+        },
+      ],
+      default: [],
+    },
   },
   { timestamps: true }
 );
