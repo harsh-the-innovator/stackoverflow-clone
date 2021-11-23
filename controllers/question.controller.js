@@ -71,3 +71,58 @@ exports.getQuestionDetail = async (req, res) => {
     });
   }
 };
+
+exports.searchQuestionByTag = async (req, res) => {
+  const { tags } = req.body;
+  try {
+    if (!tags) {
+      return res.status(400).json({
+        message: "Please provide valid tags",
+      });
+    }
+    if (tags.length === 0) {
+      return res.status(200).json({
+        questionCount: 0,
+        questionList: [],
+      });
+    }
+    const invalidTagIsThere = tags.some((tag) => !isValidObjectId(tag));
+    if (invalidTagIsThere) {
+      return res.status(400).json({
+        message: "Invalid Tag in tags array",
+      });
+    }
+
+    const result = await Question.find({
+      tags: {
+        $in: tags,
+      },
+    })
+      .populate("tags")
+      .exec();
+    res.status(200).json({
+      questionCount: result.length,
+      questionList: result,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+exports.getAllQuestions = async (req, res) => {
+  try {
+    const result = await Question.find({}).populate("tags").exec();
+    res.status(200).json({
+      questionCount: result.length,
+      questionList: result,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
