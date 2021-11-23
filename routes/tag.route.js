@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { check } = require("express-validator");
 
-const { createTag } = require("../controllers/tag.controller");
+const { createTag, getTagList } = require("../controllers/tag.controller");
 const checkErrors = require("../middlewares/checkErrors");
 
 router.post(
@@ -15,5 +15,7 @@ router.post(
   checkErrors,
   createTag
 );
+
+router.get("/tag/tag-list", getTagList);
 
 module.exports = router;
