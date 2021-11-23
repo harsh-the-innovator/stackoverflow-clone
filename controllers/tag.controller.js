@@ -17,3 +17,17 @@ exports.createTag = async (req, res) => {
     });
   }
 };
+
+exports.getTagList = async (req, res) => {
+  try {
+    const tags = await Tag.find().exec();
+    res.status(200).json({
+      tagList: tags,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};

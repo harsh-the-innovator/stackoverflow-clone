@@ -1,7 +1,10 @@
 const router = require("express").Router();
 const { check } = require("express-validator");
 
-const { createQuestion } = require("../controllers/question.controller");
+const {
+  createQuestion,
+  getQuestionDetail,
+} = require("../controllers/question.controller");
 const checkErrors = require("../middlewares/checkErrors");
 const isAuthorized = require("../middlewares/isAuthorized");
 
@@ -22,5 +25,7 @@ router.post(
   checkErrors,
   createQuestion
 );
+
+router.get("/question/:questionId", getQuestionDetail);
 
 module.exports = router;

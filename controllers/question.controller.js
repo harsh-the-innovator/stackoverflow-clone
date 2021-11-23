@@ -42,3 +42,32 @@ exports.createQuestion = async (req, res) => {
     });
   }
 };
+
+exports.getQuestionDetail = async (req, res) => {
+  const { questionId } = req.params;
+  try {
+    if (!isValidObjectId(questionId)) {
+      return res.status(400).json({
+        message: "Invalid question id",
+      });
+    }
+    const question = await Question.findById(questionId)
+      .populate("tags")
+      .exec();
+    if (!question) {
+      return res.status(404).json({
+        message: "Question not found",
+      });
+    }
+
+    res.status(200).json({
+      question,
+      message: "Question created successfully",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
