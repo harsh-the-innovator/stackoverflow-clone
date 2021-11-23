@@ -4,6 +4,8 @@ const { check } = require("express-validator");
 const {
   createQuestion,
   getQuestionDetail,
+  searchQuestionByTag,
+  getAllQuestions,
 } = require("../controllers/question.controller");
 const checkErrors = require("../middlewares/checkErrors");
 const isAuthorized = require("../middlewares/isAuthorized");
@@ -27,5 +29,13 @@ router.post(
 );
 
 router.get("/question/:questionId", getQuestionDetail);
+
+router.post(
+  "/questions/tagged",
+  [check("tags", "tags is required").isArray()],
+  searchQuestionByTag
+);
+
+router.get("/questions/question-list", getAllQuestions);
 
 module.exports = router;
