@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 const authRoutes = require("./routes/auth.route");
+const questionRoutes = require("./routes/question.route");
 
 app.use(logger("dev"));
 app.use(cors());
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", authRoutes);
+app.use("/api", questionRoutes);
 
 const port = normalizePort(process.env.PORT || 8000);
 
