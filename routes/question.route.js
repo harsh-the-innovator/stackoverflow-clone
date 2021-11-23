@@ -3,9 +3,11 @@ const { check } = require("express-validator");
 
 const { createQuestion } = require("../controllers/question.controller");
 const checkErrors = require("../middlewares/checkErrors");
+const isAuthorized = require("../middlewares/isAuthorized");
 
 router.post(
   "/question/create/:userId",
+  isAuthorized,
   [
     check("title", "question title is required")
       .trim()
