@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
 
-const { signup } = require("../controllers/auth");
+const { signup } = require("../controllers/auth.controller");
 const checkErrors = require("../middlewares/checkErrors");
 
 router.post(
@@ -19,7 +19,6 @@ router.post(
       }),
   ],
   checkErrors,
-  checkUserAlreadyExist,
   signup
 );
 
