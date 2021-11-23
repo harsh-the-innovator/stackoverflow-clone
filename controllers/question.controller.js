@@ -29,7 +29,7 @@ exports.createQuestion = async (req, res) => {
       posted_by: user._id,
       tags,
     });
-
+    Question.populate(question, { path: "tags" });
     const result = await question.save();
     res.status(200).json({
       question: result,
@@ -118,6 +118,54 @@ exports.getAllQuestions = async (req, res) => {
     res.status(200).json({
       questionCount: result.length,
       questionList: result,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+exports.editQuestion = async (req, res) => {
+  const { userId, questionId } = req.params;
+  const { title, body, tags } = req.body;
+  try {
+    if (!isValidObjectId(userId) || !isValidObjectId(questionId)) {
+      return res.status(400).json({
+        message: "Invalid user id or question id",
+      });
+    }
+    const user = await User.findById(userId).exec();
+    if (!user) {
+      return res.status(400).json({
+        message: "Invalid user",
+      });
+    }
+
+    const question = await Question.findById(questionId).populate().exec();
+    if (!question) {
+      return res.status(404).json({
+        message: "Question not found",
+      });
+    }
+
+    if (!question.posted_by.equals(userId)) {
+      return res.status(403).json({
+        message: "You are not allowed to edit this question.",
+      });
+    }
+
+    question.title = title;
+    question.body = body;
+    question.tags = tags;
+
+    Question.populate(question, { path: "tags" });
+
+    const result = await question.save();
+    res.status(200).json({
+      question: result,
+      message: "Question updated successfully",
     });
   } catch (err) {
     console.log(err);
