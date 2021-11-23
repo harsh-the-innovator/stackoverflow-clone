@@ -9,6 +9,7 @@ const app = express();
 const authRoutes = require("./routes/auth.route");
 const questionRoutes = require("./routes/question.route");
 const tagRoutes = require("./routes/tag.route");
+const answerRoutes = require("./routes/answer.route");
 
 app.use(logger("dev"));
 app.use(cors());
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 app.use("/api", authRoutes);
 app.use("/api", questionRoutes);
 app.use("/api", tagRoutes);
+app.use("/api", answerRoutes);
 
 const port = normalizePort(process.env.PORT || 8000);
 
