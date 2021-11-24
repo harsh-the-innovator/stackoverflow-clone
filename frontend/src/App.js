@@ -22,7 +22,7 @@ const App = () => {
     <React.Fragment>
       <NavbarComponent />
       <Container style={{ marginTop: "5rem" }}>
-        <div className="content">
+        <div className="app-content">
           <MenuComponent
             activeTab={activeTab}
             handleChangeActiveTab={handleChangeActiveTab}
