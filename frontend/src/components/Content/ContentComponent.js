@@ -9,8 +9,8 @@ const ContentComponent = () => {
     <div className="content-container">
       <Routes>
         <Route path="/" element={<div>Home</div>} />
-        <Route path="/questions" element={<QuestionsComponent />} />
-        <Route path="/tags" element={<TagsComponent />} />
+        <Route path="questions" element={<QuestionsComponent />} />
+        <Route path="tags" element={<TagsComponent />} />
         <Route path="*" element={<p>There's nothing here!</p>} />
       </Routes>
     </div>

@@ -4,7 +4,10 @@ import NavbarComponent from "./components/Navbar/NavbarComponent";
 import MenuComponent from "./components/VerticalMenu/MenuComponent";
 import ContentComponent from "./components/Content/ContentComponent";
 import "./app.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthProvider";
+import LoginComponent from "./components/LoginComponent/LoginComponent";
+import SignupComponent from "./components/SignupComponent/SignupComponent";
 
 const App = () => {
   const navigate = useNavigate();
@@ -19,18 +22,30 @@ const App = () => {
   };
 
   return (
-    <React.Fragment>
-      <NavbarComponent />
-      <Container style={{ marginTop: "5rem" }}>
-        <div className="app-content">
-          <MenuComponent
-            activeTab={activeTab}
-            handleChangeActiveTab={handleChangeActiveTab}
+    <AuthProvider>
+      <React.Fragment>
+        <NavbarComponent />
+        <Routes>
+          <Route
+            path="/*"
+            element={
+              <Container style={{ marginTop: "5rem" }}>
+                <div className="app-content">
+                  <MenuComponent
+                    activeTab={activeTab}
+                    handleChangeActiveTab={handleChangeActiveTab}
+                    style={{ height: "fit-content" }}
+                  />
+                  <ContentComponent />
+                </div>
+              </Container>
+            }
           />
-          <ContentComponent />
-        </div>
-      </Container>
-    </React.Fragment>
+          <Route path="/login" element={<LoginComponent />} />
+          <Route path="/signup" element={<SignupComponent />} />
+        </Routes>
+      </React.Fragment>
+    </AuthProvider>
   );
 };
 
