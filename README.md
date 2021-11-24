@@ -1,5 +1,19 @@
 # stackoverflow-clone
 
+## Technologies Used
+
+- For Frontend:
+
+  - ReactJs - for building user interface
+  - Semantic UI - for designing the UI
+  - React Router - for routing
+  - Axios - For API requests
+
+- For Backend:
+  - NodeJs - For running javascript
+  - ExpressJs - Frameword for building REST APIS using Node
+  - MongoDB - for storing the data
+
 ## PROJECT SETUP
 
 ### Backend Server Setup
