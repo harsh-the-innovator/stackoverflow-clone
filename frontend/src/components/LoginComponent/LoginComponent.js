@@ -3,9 +3,11 @@ import { Card, Form, Button } from "semantic-ui-react";
 import "./loginstyle.css";
 import axios from "../../utils/axiosconfig";
 import { useAuth } from "../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const LoginComponent = () => {
   const { setUser } = useAuth();
+  const navigate = useNavigate();
   const [btnloading, setBtnLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -25,6 +27,7 @@ const LoginComponent = () => {
         alert(data.message);
         username.value = "";
         password.value = "";
+        navigate("/");
       } else {
         throw new Error("Some error occured");
       }
