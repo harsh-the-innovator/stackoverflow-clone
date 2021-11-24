@@ -29,9 +29,13 @@ const LoginComponent = () => {
         throw new Error("Some error occured");
       }
     } catch (err) {
-      console.log(err);
-      alert("LOGIN FAILED");
+      console.log(err.response);
       setBtnLoading(false);
+      if (err.response) {
+        alert(err.response.data.message);
+      } else {
+        alert(err.message);
+      }
     }
   };
 
