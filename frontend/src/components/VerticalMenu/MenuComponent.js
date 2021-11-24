@@ -1,29 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Menu } from "semantic-ui-react";
 
-const MenuComponent = () => {
-  const [activeItem, setActiveItem] = useState("home");
-
-  const handleItemClick = (e, { name }) => {
-    setActiveItem(name);
-  };
-
+const MenuComponent = ({ activeTab, handleChangeActiveTab }) => {
   return (
     <Menu pointing vertical>
       <Menu.Item
         name="home"
-        active={activeItem === "home"}
-        onClick={handleItemClick}
+        active={activeTab === ""}
+        onClick={handleChangeActiveTab}
       />
       <Menu.Item
         name="questions"
-        active={activeItem === "questions"}
-        onClick={handleItemClick}
+        active={activeTab === "questions"}
+        onClick={handleChangeActiveTab}
       />
       <Menu.Item
         name="tags"
-        active={activeItem === "tags"}
-        onClick={handleItemClick}
+        active={activeTab === "tags"}
+        onClick={handleChangeActiveTab}
       />
     </Menu>
   );
