@@ -114,7 +114,19 @@ exports.searchQuestionByTag = async (req, res) => {
 
 exports.getAllQuestions = async (req, res) => {
   try {
-    const result = await Question.find({}).populate("tags").exec();
+    const populateOptions = [
+      {
+        path: "posted_by",
+        model: "User",
+        select: "username",
+      },
+      {
+        path: "tags",
+        model: "Tag",
+        select: "tagname",
+      },
+    ];
+    const result = await Question.find({}).populate(populateOptions).exec();
     res.status(200).json({
       questionCount: result.length,
       questionList: result,
