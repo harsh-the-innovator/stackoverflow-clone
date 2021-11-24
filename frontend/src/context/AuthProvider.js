@@ -5,7 +5,6 @@ const AuthContext = React.createContext({
   user: {},
   setUser: () => {},
   logout: () => {},
-  isLoggedIn: Boolean,
 });
 
 export function useAuth() {
@@ -15,6 +14,7 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [user, setUser] = useLocalStorage("user", {});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(isLoggedIn);
 
   const logout = () => {
     localStorage.clear();

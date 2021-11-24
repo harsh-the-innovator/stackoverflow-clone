@@ -4,7 +4,7 @@ import "./signupstyle.css";
 
 const SignupComponent = () => {
   return (
-    <div className="login-container-style">
+    <div className="signup-container-style">
       <Card>
         <Card.Content>
           <Card.Header textAlign="center">SIGNUP</Card.Header>
