@@ -18,3 +18,32 @@
 .questions-list {
   padding: 0 0.5rem;
 }
+
+.list-footer {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-footer .question-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.list-footer .question-tags > * {
+  color: #fff;
+  background-color: rgb(186, 69, 253);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+}
+
+.list-footer .question-username {
+  color: #fff;
+  background-color: rgb(27, 233, 0);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
