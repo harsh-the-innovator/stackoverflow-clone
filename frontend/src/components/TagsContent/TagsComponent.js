@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Header, Divider } from "semantic-ui-react";
 import axios from "../../utils/axiosconfig";
 import TagGridComponent from "./TagGridComponent";
-import "./tagscontent.css";
+import "./tagscontent.scss";
 
 const TagsComponent = () => {
   const [tagList, setTagList] = useState([]);

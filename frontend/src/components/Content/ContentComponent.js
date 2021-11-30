@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import TagsComponent from "../TagsContent/TagsComponent";
 import QuestionsComponent from "../QuestionsContent/QuestionsComponent";
-import "./content.css";
+import "./content.scss";
 
 const ContentComponent = () => {
   return (

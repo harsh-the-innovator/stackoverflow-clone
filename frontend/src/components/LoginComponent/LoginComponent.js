@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, Button } from "semantic-ui-react";
-import "./loginstyle.css";
+import "../../styles/auth-container-style.scss";
 import axios from "../../utils/axiosconfig";
 import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="login-container-style">
+    <div className="auth-container-style">
       <Card>
         <Card.Content>
           <Card.Header textAlign="center">LOGIN</Card.Header>

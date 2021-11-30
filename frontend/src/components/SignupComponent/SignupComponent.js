@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, Button } from "semantic-ui-react";
-import "./signupstyle.css";
+import "../../styles/auth-container-style.scss";
 import axios from "../../utils/axiosconfig";
 
 const SignupComponent = () => {
@@ -35,7 +35,7 @@ const SignupComponent = () => {
     }
   };
   return (
-    <div className="signup-container-style">
+    <div className="auth-container-style">
       <Card>
         <Card.Content>
           <Card.Header textAlign="center">SIGNUP</Card.Header>

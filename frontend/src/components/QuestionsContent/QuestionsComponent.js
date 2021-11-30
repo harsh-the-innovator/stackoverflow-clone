@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Header, Button, Divider } from "semantic-ui-react";
-import "./questionscontent.css";
+import "./questionscontent.scss";
 import QuestionsListComponent from "./QuestionsListComponent";
 import axios from "../../utils/axiosconfig";
 

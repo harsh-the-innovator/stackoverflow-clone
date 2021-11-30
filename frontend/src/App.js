@@ -3,7 +3,7 @@ import { Container } from "semantic-ui-react";
 import NavbarComponent from "./components/Navbar/NavbarComponent";
 import MenuComponent from "./components/VerticalMenu/MenuComponent";
 import ContentComponent from "./components/Content/ContentComponent";
-import "./app.css";
+import "./app.scss";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import { useAuth } from "./context/AuthProvider";
 import LoginComponent from "./components/LoginComponent/LoginComponent";
